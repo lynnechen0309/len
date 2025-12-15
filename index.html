@@ -1,0 +1,656 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.65">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'Helvetica Neue'; min-height: 15.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px 'PingFang TC'}
+    span.s1 {font: 13.0px 'PingFang TC'}
+    span.s2 {font: 13.0px 'Helvetica Neue'}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-TW"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;<span class="s1">隱形眼鏡筆記</span> | Contact Lens Note&lt;/title&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Tailwind CSS (<span class="s1">樣式庫</span>) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- React &amp; ReactDOM (<span class="s1">核心框架</span>) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Babel (<span class="s1">讓瀏覽器看不懂的</span> JSX <span class="s1">變成看得懂的</span> JS) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Google Fonts: Noto Sans TC (<span class="s1">字體優化</span>) --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Noto Sans TC', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f9f9f6; /* MUJI <span class="s1">暖白底色</span> */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* <span class="s1">隱藏橫向捲軸但保留功能</span> */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.scrollbar-hide::-webkit-scrollbar {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.scrollbar-hide {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-ms-overflow-style: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scrollbar-width: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* <span class="s1">動畫效果</span> */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeIn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>from { opacity: 0; transform: translateY(10px); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>to { opacity: 1; transform: translateY(0); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.animate-in {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 0.3s ease-out forwards;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="root"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { useState, useEffect } = React;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- <span class="s1">內建圖標元件</span> (<span class="s1">解決</span> CDN <span class="s1">依賴不穩定問題</span>) ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const IconBase = ({ children, size = 24, className = "", ...props }) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>xmlns="http://www.w3.org/2000/svg"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>width={size}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>height={size}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>viewBox="0 0 24 24"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>fill="none"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>stroke="currentColor"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>strokeWidth="2"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>strokeLinecap="round"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>strokeLinejoin="round"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>className={className}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>{...props}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{children}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Eye = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/&gt;&lt;circle cx="12" cy="12" r="3"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Plus = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;path d="M5 12h14"/&gt;&lt;path d="M12 5v14"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Search = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;circle cx="11" cy="11" r="8"/&gt;&lt;path d="m21 21-4.3-4.3"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const X = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;path d="M18 6 6 18"/&gt;&lt;path d="m6 6 12 12"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Edit2 = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Trash2 = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;path d="M3 6h18"/&gt;&lt;path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/&gt;&lt;path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/&gt;&lt;line x1="10" x2="10" y1="11" y2="17"/&gt;&lt;line x1="14" x2="14" y1="11" y2="17"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Star = ({ fill = "none", ...props }) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase fill={fill} {...props}&gt;&lt;polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ImageIcon = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;rect width="18" height="18" x="3" y="3" rx="2" ry="2"/&gt;&lt;circle cx="9" cy="9" r="2"/&gt;&lt;path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Layers = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;polygon points="12 2 2 7 12 12 22 7 12 2"/&gt;&lt;polyline points="2 17 12 22 22 17"/&gt;&lt;polyline points="2 12 12 17 22 12"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const CircleDot = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;circle cx="12" cy="12" r="1"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const FileText = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/&gt;&lt;polyline points="14 2 14 8 20 8"/&gt;&lt;line x1="16" x2="8" y1="13" y2="13"/&gt;&lt;line x1="16" x2="8" y1="17" y2="17"/&gt;&lt;line x1="10" x2="8" y1="9" y2="9"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Save = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/&gt;&lt;polyline points="17 21 17 13 7 13 7 21"/&gt;&lt;polyline points="7 3 7 8 15 8"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const AlertCircle = (props) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;IconBase {...props}&gt;&lt;circle cx="12" cy="12" r="10"/&gt;&lt;line x1="12" x2="12" y1="8" y2="12"/&gt;&lt;line x1="12" x2="12.01" y1="16" y2="16"/&gt;&lt;/IconBase&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const LensTracker = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- <span class="s1">初始資料與狀態管理</span> ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [lenses, setLenses] = useState(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// <span class="s1">嘗試從瀏覽器</span> LocalStorage <span class="s1">讀取資料</span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const saved = localStorage.getItem('lensData_muji_final');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return saved ? JSON.parse(saved) : [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>id: 1,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>brand: 'Olens',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>series: 'Vivi Ring',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>name: 'Brown',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>image: 'https://images.unsplash.com/photo-1616422285623-13ff0162193c?q=80&amp;w=400&amp;auto=format&amp;fit=crop',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>rating: 5,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>diameter: '13.0',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>baseCurve: '8.6',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>price: '500',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>notes: '<span class="s1">最喜歡的一款，非常自然，戴整天也不會乾。適合素顏或淡妝。</span>'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>id: 2,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>brand: 'Hapa Kristin',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>series: 'Secret Kristin',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>name: 'Olive',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>image: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&amp;w=400&amp;auto=format&amp;fit=crop',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>rating: 4,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>diameter: '13.5',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>baseCurve: '8.7',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>price: '580',</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>notes: '<span class="s1">顏色很特別，顯色度中等，拍照好看。</span>'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (e) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return [];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [filterBrand, setFilterBrand] = useState('<span class="s1">全部</span>');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [searchTerm, setSearchTerm] = useState('');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [isEditing, setIsEditing] = useState(false);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [currentId, setCurrentId] = useState(null);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [showForm, setShowForm] = useState(false);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [deleteId, setDeleteId] = useState(null); // <span class="s1">控制刪除確認視窗</span></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// <span class="s1">表單狀態</span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const [formData, setFormData] = useState({</p>
+<p class="p1"><span class="Apple-converted-space">                </span>brand: '',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>series: '',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>name: '',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>image: '',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>rating: 0,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>diameter: '',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>baseCurve: '8.6',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>price: '',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>notes: ''</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- <span class="s1">持久化儲存：當資料變動時寫入</span> LocalStorage ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>useEffect(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>localStorage.setItem('lensData_muji_final', JSON.stringify(lenses));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, [lenses]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- <span class="s1">計算唯一品牌列表</span> (<span class="s1">用於過濾器</span>) ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const uniqueBrands = ['<span class="s1">全部</span>', ...new Set(lenses.map(item =&gt; item.brand))];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- <span class="s1">過濾與搜尋邏輯</span> ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const filteredLenses = lenses.filter(lens =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const matchBrand = filterBrand === '<span class="s1">全部</span>' || lens.brand === filterBrand;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const searchLower = searchTerm.toLowerCase();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// <span class="s1">搜尋範圍：品牌、系列、名稱、備註</span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const matchSearch =<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>lens.brand.toLowerCase().includes(searchLower) ||</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>(lens.series &amp;&amp; lens.series.toLowerCase().includes(searchLower)) ||</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>lens.name.toLowerCase().includes(searchLower) ||</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>(lens.notes &amp;&amp; lens.notes.toLowerCase().includes(searchLower));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>return matchBrand &amp;&amp; matchSearch;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- <span class="s1">事件處理函式</span> ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const handleInputChange = (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const { name, value } = e.target;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setFormData(prev =&gt; ({ ...prev, [name]: value }));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const handleRating = (score) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setFormData(prev =&gt; ({ ...prev, rating: score }));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const resetForm = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setFormData({<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>brand: '',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>series: '',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>name: '',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>image: '',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>rating: 0,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>diameter: '',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>baseCurve: '8.6',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>price: '',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>notes: ''</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setIsEditing(false);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setCurrentId(null);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setShowForm(false);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const handleSubmit = (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!formData.brand || !formData.name) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (isEditing) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>setLenses(prev =&gt; prev.map(item =&gt; item.id === currentId ? { ...formData, id: currentId } : item));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>setLenses(prev =&gt; [...prev, { ...formData, id: Date.now() }]);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>resetForm();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const handleEdit = (lens) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setFormData({</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>...lens,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>notes: lens.notes || ''<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setCurrentId(lens.id);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setIsEditing(true);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setShowForm(true);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>window.scrollTo({ top: 0, behavior: 'smooth' });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// <span class="s1">觸發刪除確認</span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const initiateDelete = (id) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setDeleteId(id);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// <span class="s1">確認刪除執行</span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const confirmDelete = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!deleteId) return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const id = deleteId;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const remainingLenses = lenses.filter(item =&gt; item.id !== id);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setLenses(remainingLenses);</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p3"><span class="s2"><span class="Apple-converted-space">                </span>// </span>如果刪除後該品牌沒資料了，自動切換回「全部」</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const remainingBrands = new Set(remainingLenses.map(i =&gt; i.brand));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (filterBrand !== '<span class="s1">全部</span>' &amp;&amp; !remainingBrands.has(filterBrand)) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>setFilterBrand('<span class="s1">全部</span>');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setDeleteId(null);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// --- <span class="s1">元件：星星評分</span> ---</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const StarRating = ({ rating, interactive = false, size = 16 }) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="flex gap-0.5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{[1, 2, 3, 4, 5].map((star) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;Star</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>key={star}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>size={size}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>fill={star &lt;= rating ? "#9ca3af" : "none"}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>className={`transition-colors ${interactive ? 'cursor-pointer hover:scale-110' : ''} ${</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>star &lt;= rating ? 'text-stone-500' : 'text-stone-300'</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>}`}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>onClick={() =&gt; interactive &amp;&amp; handleRating(star)}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="min-h-screen text-stone-800 pb-20 selection:bg-stone-200 relative"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{/* <span class="s1">刪除確認</span> Modal (<span class="s1">彈出視窗</span>) */}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{deleteId &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/20 backdrop-blur-sm animate-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="bg-white p-6 rounded-sm shadow-lg max-w-xs w-full border border-stone-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="flex flex-col items-center text-center gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center text-[#7F0019]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;AlertCircle size={20} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;h3 className="text-base font-bold text-stone-800"&gt;<span class="s1">確定刪除嗎？</span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p className="text-xs text-stone-500 mt-1"&gt;<span class="s1">此動作無法復原。</span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="flex gap-3 w-full mt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>onClick={() =&gt; setDeleteId(null)}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>className="flex-1 py-2 px-4 border border-stone-200 rounded-sm text-xs font-bold text-stone-600 hover:bg-stone-50 transition-colors"</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span><span class="s1">取消</span></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>onClick={confirmDelete}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>className="flex-1 py-2 px-4 bg-[#7F0019] rounded-sm text-xs font-bold text-white hover:bg-[#630012] transition-colors shadow-sm"</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span><span class="s1">刪除</span></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{/* Header (<span class="s1">頂部導航</span>) */}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;header className="bg-white sticky top-0 z-10 border-b border-stone-200/60 shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="max-w-3xl mx-auto px-6 py-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex justify-between items-center mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="flex items-center gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="bg-[#7F0019] p-2 rounded-sm text-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;Eye size={20} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;h1 className="text-lg font-bold text-stone-800 tracking-wide"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span><span class="s1">隱形眼鏡筆記</span></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p className="text-[10px] text-stone-400 tracking-wider font-medium uppercase"&gt;Contact Lens Note&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>onClick={() =&gt; { resetForm(); setShowForm(!showForm); }}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>className={`p-2 transition-all duration-300 border border-stone-300 hover:border-[#7F0019] hover:text-[#7F0019] rounded-sm ${showForm ? 'bg-stone-100 rotate-45' : 'bg-white'}`}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;Plus size={24} strokeWidth={1.5} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{/* <span class="s1">搜尋列</span> */}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="relative group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;Search className="absolute left-3 top-2.5 text-stone-400 group-focus-within:text-[#7F0019] transition-colors" size={18} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>type="text"</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>placeholder="<span class="s1">搜尋品牌、系列、備註</span>..."</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>value={searchTerm}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>onChange={(e) =&gt; setSearchTerm(e.target.value)}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>className="w-full bg-[#f4f4f4] border-b border-transparent focus:bg-white focus:border-[#7F0019] rounded-sm pl-10 pr-4 py-2 text-sm focus:outline-none transition-all placeholder:text-stone-400 text-stone-600"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>{searchTerm &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>onClick={() =&gt; setSearchTerm('')}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>className="absolute right-3 top-2.5 text-stone-400 hover:text-stone-600"</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;X size={16} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;main className="max-w-3xl mx-auto px-6 py-8"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{/* <span class="s1">新增</span>/<span class="s1">編輯</span> <span class="s1">表單</span> */}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{showForm &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="mb-10 bg-white p-8 rounded-sm border border-stone-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] animate-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="flex justify-between items-center mb-6 pb-2 border-b border-stone-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h2 className="text-base font-bold text-stone-700 flex items-center gap-2 tracking-wide"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{isEditing ? &lt;Edit2 size={16} /&gt; : &lt;Plus size={16} /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{isEditing ? '<span class="s1">編輯紀錄</span>' : '<span class="s1">新增紀錄</span>'}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onClick={resetForm} className="text-stone-400 hover:text-stone-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;X size={20} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;form onSubmit={handleSubmit} className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;label className="block text-xs font-bold text-stone-500 mb-2 tracking-wider"&gt;<span class="s1">品牌</span> (Brand)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>type="text"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>name="brand"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>placeholder="<span class="s1">例如</span>: Olens"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>value={formData.brand}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onChange={handleInputChange}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className="w-full bg-[#f9f9f6] border border-stone-200 rounded-sm px-3 py-2.5 focus:outline-none focus:border-[#7F0019] transition-colors text-stone-700"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>required</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;label className="block text-xs font-bold text-stone-500 mb-2 tracking-wider"&gt;<span class="s1">系列</span> (Series)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;Layers className="absolute left-3 top-3 text-stone-400" size={14} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>type="text"</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>name="series"</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>placeholder="<span class="s1">例如</span>: Vivi Ring"</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>value={formData.series}</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>onChange={handleInputChange}</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>className="w-full bg-[#f9f9f6] border border-stone-200 rounded-sm pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#7F0019] transition-colors text-stone-700"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;label className="block text-xs font-bold text-stone-500 mb-2 tracking-wider"&gt;<span class="s1">名稱</span> / <span class="s1">顏色</span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>type="text"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>name="name"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>placeholder="<span class="s1">例如</span>: Brown"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>value={formData.name}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>onChange={handleInputChange}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>className="w-full bg-[#f9f9f6] border border-stone-200 rounded-sm px-3 py-2.5 focus:outline-none focus:border-[#7F0019] transition-colors text-stone-700"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>required</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;label className="block text-xs font-bold text-stone-500 mb-2 tracking-wider"&gt;<span class="s1">圖片網址</span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;ImageIcon className="absolute left-3 top-3 text-stone-400" size={14} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>type="url"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>name="image"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>placeholder="https://..."</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>value={formData.image}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onChange={handleInputChange}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className="w-full bg-[#f9f9f6] border border-stone-200 rounded-sm pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#7F0019] transition-colors text-stone-700 text-sm"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="grid grid-cols-3 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="col-span-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;label className="block text-xs font-bold text-stone-500 mb-2 tracking-wider text-center"&gt;<span class="s1">基弧</span> (BC)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;select</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>name="baseCurve"</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>value={formData.baseCurve}</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>onChange={handleInputChange}</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>className="w-full bg-[#f9f9f6] border border-stone-200 rounded-sm px-2 py-2.5 focus:outline-none focus:border-[#7F0019] appearance-none text-center text-stone-700"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;option value="8.5"&gt;8.5&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;option value="8.6"&gt;8.6&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;option value="8.7"&gt;8.7&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;CircleDot className="absolute left-2 top-3 text-stone-400 pointer-events-none hidden sm:block" size={12} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="col-span-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;label className="block text-xs font-bold text-stone-500 mb-2 tracking-wider text-center"&gt;<span class="s1">著色直徑</span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>type="number"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>step="0.1"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>name="diameter"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>placeholder="13.2"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>value={formData.diameter}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onChange={handleInputChange}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className="w-full bg-[#f9f9f6] border border-stone-200 rounded-sm px-2 py-2.5 focus:outline-none focus:border-[#7F0019] text-center text-stone-700"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="col-span-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;label className="block text-xs font-bold text-stone-500 mb-2 tracking-wider text-center"&gt;<span class="s1">價格</span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>type="number"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>name="price"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>placeholder="$$"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>value={formData.price}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onChange={handleInputChange}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className="w-full bg-[#f9f9f6] border border-stone-200 rounded-sm px-2 py-2.5 focus:outline-none focus:border-[#7F0019] text-center text-stone-700"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;label className="block text-xs font-bold text-stone-500 mb-2 tracking-wider"&gt;<span class="s1">備註</span> (Notes)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;FileText className="absolute left-3 top-3 text-stone-400" size={14} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;textarea</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>name="notes"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>placeholder="<span class="s1">寫下配戴感受、購買地點或任何備註</span>..."</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>value={formData.notes}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>onChange={handleInputChange}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>rows="3"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>className="w-full bg-[#f9f9f6] border border-stone-200 rounded-sm pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#7F0019] transition-colors text-stone-700 resize-none text-sm"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="pt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;label className="block text-xs font-bold text-stone-500 mb-2 tracking-wider text-center"&gt;<span class="s1">舒適度評分</span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="flex justify-center py-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;StarRating rating={formData.rating} interactive={true} size={24} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>type="submit"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>className="w-full bg-[#7F0019] hover:bg-[#630012] text-white font-medium py-3 rounded-sm shadow-sm transition-all flex justify-center items-center gap-2 tracking-widest text-sm"</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;Save size={16} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{isEditing ? '<span class="s1">更新資料</span>' : '<span class="s1">新增至筆記</span>'}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{/* <span class="s1">品牌過濾器</span> */}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="mb-8 overflow-x-auto pb-2 scrollbar-hide"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>{uniqueBrands.map(brand =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>key={brand}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>onClick={() =&gt; setFilterBrand(brand)}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>className={`px-5 py-2 rounded-sm text-xs font-medium tracking-wider whitespace-nowrap transition-all border ${</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>filterBrand === brand<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>? 'bg-[#7F0019] text-white border-[#7F0019]'<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>: 'bg-white text-stone-500 border-stone-200 hover:border-stone-400'</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>}`}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{brand}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{/* <span class="s1">列表顯示</span> */}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="grid grid-cols-1 sm:grid-cols-2 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{filteredLenses.length === 0 ? (</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="col-span-full py-16 text-center text-stone-400 bg-white rounded-sm border border-stone-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;Search className="mx-auto mb-3 opacity-30" size={40} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p className="font-medium tracking-wide"&gt;<span class="s1">找不到相關紀錄</span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onClick={() =&gt; {setFilterBrand('<span class="s1">全部</span>'); setSearchTerm('')}} className="text-[#7F0019] text-xs font-bold mt-3 hover:underline tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span><span class="s1">清除所有篩選</span></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>) : (</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>filteredLenses.map(lens =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div key={lens.id} className="group bg-white rounded-sm p-4 border border-stone-200 hover:border-stone-400 transition-all flex gap-4 h-full relative"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* <span class="s1">圖片區域</span> */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 bg-[#f4f4f4] overflow-hidden relative border border-stone-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>{lens.image ? (</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;img<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>src={lens.image}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>alt={lens.name}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>className="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>onError={(e) =&gt; { e.target.src = 'https://placehold.co/150?text=No+Image'; }}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>) : (</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="w-full h-full flex items-center justify-center text-stone-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;ImageIcon size={20} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>{/* <span class="s1">資訊區域</span> */}</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div className="flex-1 flex flex-col justify-between min-h-[7rem]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>{/* <span class="s1">頂部：品牌</span> + <span class="s1">系列</span> */}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="flex flex-col mb-1.5 pr-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;div className="text-[10px] text-stone-500 font-bold uppercase tracking-widest border-b border-stone-200 inline-block pb-0.5 self-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>{lens.brand}</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>{lens.series &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;span className="text-[10px] text-stone-400 font-medium tracking-wide mt-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>{lens.series}</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                                </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;h3 className="text-base font-medium text-stone-800 leading-tight mb-2 tracking-wide"&gt;{lens.name}&lt;/h3&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                                </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="flex items-center gap-2 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;StarRating rating={lens.rating} size={10} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                                </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>{/* <span class="s1">中間：規格參數</span> + <span class="s1">價格</span> (<span class="s1">置底對齊</span>) */}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;div className="flex items-end justify-between border-t border-stone-100 pt-2 mt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-500 font-mono"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;div className="flex items-center gap-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;span className="text-stone-300"&gt;BC&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;span&gt;{lens.baseCurve}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;div className="flex items-center gap-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;span className="text-stone-300"&gt;DIA&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;span&gt;{lens.diameter || '-'}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>{lens.price &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;div className="text-sm font-medium text-[#7F0019]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>NT.{lens.price}</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>{/* <span class="s1">備註區域</span> */}</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>{lens.notes &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;div className="mt-2 pt-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;p className="text-[11px] text-stone-500 leading-relaxed line-clamp-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>&lt;span className="text-stone-300 mr-1 text-[10px] uppercase"&gt;Note&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                            </span>{lens.notes}</p>
+<p class="p1"><span class="Apple-converted-space">                                                        </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>{/* <span class="s1">操作按鈕</span> (<span class="s1">滑鼠懸停顯示</span>) */}</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;div className="flex gap-1 absolute top-4 right-2 sm:right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white/90 backdrop-blur-sm p-1 rounded-sm shadow-sm z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>onClick={() =&gt; handleEdit(lens)}</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>className="p-1.5 text-stone-400 hover:text-stone-800 transition-colors"</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>title="<span class="s1">編輯</span>"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;Edit2 size={14} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>onClick={() =&gt; initiateDelete(lens.id)}</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>className="p-1.5 text-stone-400 hover:text-[#7F0019] transition-colors"</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>title="<span class="s1">刪除</span>"</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                    </span>&lt;Trash2 size={14} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>))</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/main&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const root = ReactDOM.createRoot(document.getElementById('root'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>root.render(&lt;LensTracker /&gt;);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
